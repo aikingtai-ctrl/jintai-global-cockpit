@@ -1,0 +1,1 @@
+window.COCKPIT_VERSION = {"ui_schema_version": 3, "version": 1795166216198, "built_at": "2026-11-20 17:16:56", "elapsed_ms": 120.0, "changed_sources": 0, "total_items": 250858, "docs": 22048, "media": 81071, "folders": 2291, "memories": 603, "shared_memories": 145, "sessions": 1733, "atlas": 142187, "skills": 925, "todos": 57, "underlying_assets_estimate": 1085098};

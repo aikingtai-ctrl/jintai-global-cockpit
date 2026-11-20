@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+<!-- COCKPIT_REALTIME_SYNC: 2026-11-20 17:16:56 | VERSION: 1795166216198 | TOTAL: 250858 -->
+<html lang="zh-CN">
+<head>
+  <script id="jt-unified-gate">(function(){
+var H='6e95ff3e55611d24803014d9de77b401f191f198f9372577e58f9aa2e51771d3';
+var k='jt_gate';
+function getSaved(){
+  try{if(location.hostname==='127.0.0.1'||location.hostname==='localhost'||location.protocol==='file:'||location.href.indexOf('jt_ok=6e95ff3e')!==-1){localStorage.setItem(k,H);sessionStorage.setItem(k,H);return true;}}catch(e){}
+  try{if(localStorage.getItem(k)===H)return true;}catch(e){}
+  try{if(sessionStorage.getItem(k)===H)return true;}catch(e){}
+  return false;
+}
+function saveOk(){
+  try{localStorage.setItem(k,H);}catch(e){}
+  try{sessionStorage.setItem(k,H);}catch(e){}
+}
+if(getSaved()){
+  document.documentElement.setAttribute('data-jt-ok','1');
+  return;
+}
+window.__JT_LOCKED__=true;
+var st=document.createElement('style');
+st.id='jt_gate_css';
+st.textContent='html:not([data-jt-ok="1"]) body{display:none!important}';
+document.documentElement.appendChild(st);
+document.documentElement.style.visibility='hidden';
+function shaPure(ascii){
+  function rr(v,a){return(v>>>a)|(v<<(32-a));}
+  var bytes=Array.from(new TextEncoder().encode(ascii)),i,j;
+  var bitLen=bytes.length*8;
+  bytes.push(0x80);
+  while((bytes.length%64)!==56)bytes.push(0);
+  var hi=Math.floor(bitLen/4294967296),lo=bitLen>>>0;
+  bytes.push((hi>>>24)&255,(hi>>>16)&255,(hi>>>8)&255,hi&255,(lo>>>24)&255,(lo>>>16)&255,(lo>>>8)&255,lo&255);
+  var K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+  var H0=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+  for(i=0;i<bytes.length;i+=64){
+    var W=new Array(64);
+    for(j=0;j<16;j++)W[j]=((bytes[i+j*4]<<24)|(bytes[i+j*4+1]<<16)|(bytes[i+j*4+2]<<8)|bytes[i+j*4+3])>>>0;
+    for(j=16;j<64;j++){
+      var s0=rr(W[j-15],7)^rr(W[j-15],18)^(W[j-15]>>>3);
+      var s1=rr(W[j-2],17)^rr(W[j-2],19)^(W[j-2]>>>10);
+      W[j]=(W[j-16]+s0+W[j-7]+s1)>>>0;
+    }
+    var a=H0[0],b=H0[1],c=H0[2],d=H0[3],e=H0[4],f=H0[5],g=H0[6],h=H0[7];
+    for(j=0;j<64;j++){
+      var S1=rr(e,6)^rr(e,11)^rr(e,25),ch=(e&f)^((~e)&g),t1=(h+S1+ch+K[j]+W[j])>>>0;
+      var S0=rr(a,2)^rr(a,13)^rr(a,22),maj=(a&b)^(a&c)^(b&c),t2=(S0+maj)>>>0;
+      h=g;g=f;f=e;e=(d+t1)>>>0;d=c;c=b;b=a;a=(t1+t2)>>>0;
+    }
+    H0[0]=(H0[0]+a)>>>0;H0[1]=(H0[1]+b)>>>0;H0[2]=(H0[2]+c)>>>0;H0[3]=(H0[3]+d)>>>0;
+    H0[4]=(H0[4]+e)>>>0;H0[5]=(H0[5]+f)>>>0;H0[6]=(H0[6]+g)>>>0;H0[7]=(H0[7]+h)>>>0;
+  }
+  return H0.map(function(x){return('00000000'+x.toString(16)).slice(-8);}).join('');
+}
+async function sha(s){
+  try{
+    if(window.crypto&&crypto.subtle&&typeof TextEncoder!=='undefined'){
+      var b=new TextEncoder().encode(s);
+      var d=await crypto.subtle.digest('SHA-256',b);
+      return Array.from(new Uint8Array(d)).map(function(x){return x.toString(16).padStart(2,'0');}).join('');
+    }
+  }catch(e){}
+  return shaPure(s);
+}
+window.addEventListener('DOMContentLoaded',function(){
+  document.body.className='';
+  document.body.style.cssText='margin:0;background:#F6F5F0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px';
+  document.body.innerHTML='<div id="jt_lock_box" style="font:20pt/1.65 Microsoft YaHei,PingFang SC,sans-serif;padding:36px 28px;color:#111827;width:min(680px,100%);background:#fff;border:2px solid #1D4ED8;border-radius:16px;text-align:center;box-shadow:0 10px 28px rgba(0,0,0,.08)"><div style="font-size:24pt;font-weight:800;color:#111827;margin-bottom:10px">🚀 金泰全局秒搜驾驶舱 · 云端同步版</div><div style="font-size:16pt;color:#4B5563;margin-bottom:24px">请输入金泰统一访问密码（与《中国历史文化图库》通用，验证一次全站免密）</div><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:520px;margin:0 auto"><input id="jt_pw_box" type="password" placeholder="请输入访问密码" autocomplete="current-password" style="flex:1;min-width:210px;font:18pt Microsoft YaHei,sans-serif;padding:12px 16px;border:1.5px solid #9CA3AF;border-radius:10px;background:#fff;color:#111827"><button id="jt_pw_btn" type="button" style="font:bold 18pt Microsoft YaHei,sans-serif;padding:12px 28px;background:#1D4ED8;color:#fff;border:none;border-radius:10px;cursor:pointer">验证进入</button></div><div id="jt_pw_err" style="font-size:15pt;color:#DC2626;min-height:28px;margin-top:12px"></div></div>';
+  document.documentElement.setAttribute('data-jt-ok','1');
+  document.documentElement.style.visibility='visible';
+  var inp=document.getElementById('jt_pw_box'),btn=document.getElementById('jt_pw_btn'),err=document.getElementById('jt_pw_err');
+  async function tryIn(){
+    var v=(inp.value||'').trim();
+    if(!v){err.textContent='请输入访问密码';return;}
+    var h=await sha(v);
+    if(h===H){saveOk();location.reload();}
+    else{err.textContent='密码不正确，请核对后重试';inp.value='';inp.focus();}
+  }
+  if(btn)btn.onclick=tryIn;
+  if(inp){
+    inp.onkeydown=function(e){if(e.key==='Enter')tryIn();};
+    setTimeout(function(){try{inp.focus();}catch(e){}},50);
+  }
+});
+})();</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+  <title>金泰全局秒搜驾驶舱 · 全盘百万级资产实时检索引擎</title>
+  <style>
+    :root {
+      --base-font: 22px;
+      --bg: #F6F5F0;
+      --surface: #FFFFFF;
+      --surface-alt: #EFECE6;
+      --text: #111827;
+      --text-muted: #4B5563;
+      --border: #D6D3CD;
+      --primary: #1D4ED8;
+      --primary-hover: #1E40AF;
+      --doc: #B45309;
+      --doc-bg: #FEF3C7;
+      --media: #BE123C;
+      --media-bg: #FFE4E6;
+      --folder: #0369A1;
+      --folder-bg: #E0F2FE;
+      --mem: #047857;
+      --mem-bg: #D1FAE5;
+      --sess: #4338CA;
+      --sess-bg: #E0E7FF;
+      --atlas: #9A3412;
+      --atlas-bg: #FFEDD5;
+      --skill: #6D28D9;
+      --skill-bg: #EDE9FE;
+      --todo: #DC2626;
+      --todo-bg: #FEE2E2;
+      --mark-bg: #FDE047;
+      --mark-text: #111827;
+      --warn-bg: #FEF08A;
+      --warn-border: #CA8A04;
+      --warn-text: #713F12;
+      --shadow: 0 4px 16px rgba(17, 24, 39, 0.06);
+    }
+
+    body.dark {
+      --bg: #0F172A;
+      --surface: #1E293B;
+      --surface-alt: #334155;
+      --text: #F8FAFC;
+      --text-muted: #CBD5E1;
+      --border: #475569;
+      --primary: #3B82F6;
+      --primary-hover: #60A5FA;
+      --doc: #FBBF24;
+      --doc-bg: rgba(245, 158, 11, 0.2);
+      --media: #FB7185;
+      --media-bg: rgba(244, 63, 94, 0.2);
+      --folder: #38BDF8;
+      --folder-bg: rgba(14, 165, 233, 0.2);
+      --mem: #34D399;
+      --mem-bg: rgba(16, 185, 129, 0.2);
+      --sess: #818CF8;
+      --sess-bg: rgba(99, 102, 241, 0.22);
+      --atlas: #FB923C;
+      --atlas-bg: rgba(249, 115, 22, 0.22);
+      --skill: #C084FC;
+      --skill-bg: rgba(168, 85, 247, 0.22);
+      --todo: #F87171;
+      --todo-bg: rgba(239, 68, 68, 0.24);
+      --mark-bg: #FACC15;
+      --mark-text: #0F172A;
+      --warn-bg: rgba(234, 179, 8, 0.22);
+      --warn-border: #FACC15;
+      --warn-text: #FEF08A;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", system-ui, -apple-system, sans-serif;
+      font-size: var(--base-font);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1800px;
+      margin: 0 auto;
+      padding: 20px 28px 68px;
+    }
+
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .brand {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-badge {
+      background: var(--text);
+      color: var(--surface);
+      font-weight: 800;
+      font-size: 0.88em;
+      padding: 6px 14px;
+      border-radius: 8px;
+      letter-spacing: 0.04em;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 1.3em;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #10B981;
+      display: inline-block;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.22);
+    }
+    .dot.offline {
+      background: #F59E0B;
+      box-shadow: none;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .ctrl-btn {
+      font-family: inherit;
+      font-size: 0.84em;
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .ctrl-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .ctrl-btn.active { background: var(--primary); color: #FFF; border-color: var(--primary); }
+
+    /* 全盘规模概览横条 */
+    .scale-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 18px;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 0.84em;
+      color: var(--text-muted);
+    }
+    .scale-strip strong {
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    /* 超大搜索主框 */
+    .search-hero {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 22px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+      transition: border-color 0.15s ease;
+    }
+    .search-hero:focus-within { border-color: var(--primary); }
+
+    .search-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .search-icon {
+      font-size: 1.35em;
+      user-select: none;
+    }
+
+    #searchInput {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 1.24em;
+      font-weight: 700;
+      padding: 6px 0;
+    }
+    #searchInput::placeholder {
+      color: var(--text-muted);
+      opacity: 0.65;
+      font-weight: 500;
+    }
+
+    .clear-btn {
+      font-size: 0.92em;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      cursor: pointer;
+      display: none;
+    }
+    .clear-btn.visible { display: inline-block; }
+
+    .search-meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.84em;
+      color: var(--text-muted);
+    }
+
+    .synonym-banner {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* 热词胶囊条 */
+    .hot-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .hot-label {
+      font-size: 0.85em;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .hot-chip {
+      font-family: inherit;
+      font-size: 0.85em;
+      font-weight: 600;
+      padding: 7px 15px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+    }
+    .hot-chip:hover {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #FFF;
+    }
+
+    /* 七大目标层页签 + 子筛选 */
+    .filter-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .tabs-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .tab-btn {
+      font-family: inherit;
+      font-size: 0.88em;
+      font-weight: 700;
+      padding: 9px 15px;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .tab-btn:hover { border-color: var(--primary); }
+    .tab-btn.active {
+      background: var(--text);
+      color: var(--surface);
+      border-color: var(--text);
+    }
+
+    .tab-count {
+      font-size: 0.84em;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--surface-alt);
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+    .tab-btn.active .tab-count {
+      background: rgba(255,255,255,0.22);
+      color: inherit;
+    }
+
+    .subfilter-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .sub-pill {
+      font-family: inherit;
+      font-size: 0.82em;
+      font-weight: 600;
+      padding: 6px 13px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .sub-pill.active {
+      background: var(--primary);
+      color: #FFF;
+      border-color: var(--primary);
+    }
+
+    /* 醒目防误筛黄条（彻底杜绝“点了只看MP4忘了关导致其他结果为0”） */
+    .active-filter-alert {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 12px 18px;
+      margin-bottom: 18px;
+      border-radius: 12px;
+      background: var(--warn-bg);
+      border: 2px solid var(--warn-border);
+      color: var(--warn-text);
+      font-size: 0.9em;
+      font-weight: 700;
+    }
+    .active-filter-alert.show { display: flex; }
+
+    /* 双列大字卡片网格（严守适老 22px+ 大字，绝不排窄四列） */
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 26px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-header h2 {
+      margin: 0;
+      font-size: 1.12em;
+      font-weight: 800;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    @media (max-width: 1180px) {
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+
+    .topic-hubs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 1180px) {
+      .topic-hubs-grid { grid-template-columns: 1fr; }
+    }
+    .topic-hub-card {
+      text-align: left;
+      font-family: inherit;
+      font-size: 1em;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-left: 7px solid var(--primary);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      color: var(--text);
+      transition: all 0.14s ease;
+    }
+    .topic-hub-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+    .topic-hub-title {
+      font-size: 1.05em;
+      font-weight: 800;
+      margin-bottom: 5px;
+      color: var(--text);
+    }
+    .topic-hub-desc {
+      font-size: 0.86em;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+    .topic-hub-arrow {
+      font-size: 0.9em;
+      font-weight: 800;
+      color: var(--primary);
+      white-space: nowrap;
+      padding: 6px 12px;
+      border-radius: 9px;
+      background: var(--surface-alt);
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 7px solid var(--primary);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .card.kind-doc { border-left-color: var(--doc); }
+    .card.kind-media { border-left-color: var(--media); }
+    .card.kind-folder { border-left-color: var(--folder); }
+    .card.kind-memory { border-left-color: var(--mem); }
+    .card.kind-session { border-left-color: var(--sess); }
+    .card.kind-atlas { border-left-color: var(--atlas); }
+    .card.kind-skill { border-left-color: var(--skill); }
+
+    .card-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge {
+      font-size: 0.78em;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 7px;
+    }
+    .badge-doc { background: var(--doc-bg); color: var(--doc); }
+    .badge-media { background: var(--media-bg); color: var(--media); }
+    .badge-folder { background: var(--folder-bg); color: var(--folder); }
+    .badge-mem { background: var(--mem-bg); color: var(--mem); }
+    .badge-sess { background: var(--sess-bg); color: var(--sess); }
+    .badge-atlas { background: var(--atlas-bg); color: var(--atlas); }
+    .badge-skill { background: var(--skill-bg); color: var(--skill); }
+    .badge-todo { background: var(--todo-bg); color: var(--todo); }
+    .badge-cat { background: var(--surface-alt); color: var(--text-muted); }
+
+    .card-date {
+      font-size: 0.8em;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .card-title {
+      margin: 2px 0 0;
+      font-size: 1.06em;
+      font-weight: 800;
+      line-height: 1.4;
+      word-break: break-word;
+      cursor: pointer;
+      transition: color 0.12s ease;
+    }
+    .card-title:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    .card-summary {
+      margin: 0;
+      font-size: 0.9em;
+      color: var(--text-muted);
+      line-height: 1.56;
+      word-break: break-word;
+    }
+
+    mark {
+      background: var(--mark-bg);
+      color: var(--mark-text);
+      padding: 0 3px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    .linked-files-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 4px;
+    }
+
+    .linked-file-chip {
+      font-family: inherit;
+      font-size: 0.8em;
+      font-weight: 600;
+      padding: 5px 11px;
+      border-radius: 8px;
+      border: 1px dashed var(--doc);
+      background: var(--doc-bg);
+      color: var(--text);
+      cursor: pointer;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .linked-file-chip:hover { opacity: 0.85; }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      padding-top: 8px;
+      border-top: 1px solid var(--surface-alt);
+    }
+
+    .act-btn {
+      font-family: inherit;
+      font-size: 0.84em;
+      font-weight: 700;
+      padding: 8px 15px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      cursor: pointer;
+    }
+    .act-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .act-btn.primary {
+      background: var(--primary);
+      color: #FFF;
+      border-color: var(--primary);
+    }
+    .act-btn.primary:hover {
+      background: var(--primary-hover);
+      color: #FFF;
+    }
+
+    .empty-box {
+      background: var(--surface);
+      border: 2px dashed var(--border);
+      border-radius: 16px;
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    /* 详情阅读大字弹窗 */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      z-index: 1000;
+    }
+    .modal-backdrop.open { display: flex; }
+
+    .modal-dialog {
+      background: var(--surface);
+      color: var(--text);
+      width: min(1280px, 96vw);
+      max-height: 90vh;
+      border-radius: 18px;
+      border: 2px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 26px;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-header h3 {
+      margin: 0;
+      font-size: 1.16em;
+      font-weight: 800;
+    }
+
+    .modal-body {
+      padding: 24px 28px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 0.98em;
+      line-height: 1.7;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: #111827;
+      color: #FFF;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-size: 0.9em;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: all 0.2s ease;
+      z-index: 2000;
+      max-width: min(680px, 90vw);
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 顶部栏 -->
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-badge">KINGTAI</span>
+        <h1>金泰全局秒搜驾驶舱</h1>
+        <span class="status-pill" id="serverStatusPill">
+          <span class="dot" id="serverDot"></span>
+          <span id="serverStatusText">正在连接本地实时毫秒引擎…</span>
+        </span>
+      </div>
+      <div class="controls">
+        <button class="ctrl-btn" data-fsize="22" onclick="setFontSize(22)">大字 22px</button>
+        <button class="ctrl-btn" data-fsize="26" onclick="setFontSize(26)">超大 26px</button>
+        <button class="ctrl-btn" data-fsize="30" onclick="setFontSize(30)">特大 30px</button>
+        <button class="ctrl-btn" onclick="toggleTheme()" id="themeBtn">🌙 深色护眼</button>
+        <button class="ctrl-btn" onclick="rebuildIndex()" id="rebuildBtn">🔄 立即同步</button>
+      </div>
+    </header>
+
+    <!-- 全盘覆盖规模条 -->
+    <div class="scale-strip" id="scaleStrip">
+      <span id="scaleSummaryLeft">正在加载 C 盘 + D 盘 + 历史影视百万资产库…</span>
+      <span id="scaleSummaryRight">实时文件守护已开启（自动监测新增/修改文件并无感热刷新）</span>
+    </div>
+
+    <!-- 超大搜索主框 -->
+    <section class="search-hero">
+      <div class="search-row">
+        <span class="search-icon">🔍</span>
+        <input
+          id="searchInput"
+          type="text"
+          autocomplete="off"
+          autofocus
+          placeholder="搜全机一切：河传协议 / 常青报价 / 门外的人 / 关云长 / 唐代甲胄 / 孔子 / 张艺谋 / cqbj …（回车直开首项）"
+        />
+        <button class="clear-btn" id="clearBtn" onclick="clearSearch()">✕ 清空</button>
+      </div>
+      <div class="search-meta-bar">
+        <div id="searchSummaryText">支持：全盘文档/视频/项目目录 · 历史图库27万提示词 · 影视54万镜头 · 三端全量对话 · 拼音首字母</div>
+        <div class="synonym-banner" id="synonymBanner"></div>
+      </div>
+    </section>
+
+    <!-- 一键高频热词 -->
+    <div class="hot-bar" id="hotBar">
+      <span class="hot-label">⚡ 一键直达：</span>
+    </div>
+
+    <!-- 七大目标层 + 格式/业务域筛选 -->
+    <section class="filter-panel">
+      <div class="tabs-row" id="kindTabs">
+        <button class="tab-btn active" data-kind="all" onclick="setKind('all')">全部目标 <span class="tab-count" id="cnt-all">-</span></button>
+        <button class="tab-btn" data-kind="doc" onclick="setKind('doc')">📄 文档与表格 <span class="tab-count" id="cnt-doc">-</span></button>
+        <button class="tab-btn" data-kind="media" onclick="setKind('media')">🎬 视频·图片·音频 <span class="tab-count" id="cnt-media">-</span></button>
+        <button class="tab-btn" data-kind="folder" onclick="setKind('folder')">📁 项目文件夹 <span class="tab-count" id="cnt-folder">-</span></button>
+        <button class="tab-btn" data-kind="memory" onclick="setKind('memory')">📌 记忆与复盘 <span class="tab-count" id="cnt-memory">-</span></button>
+        <button class="tab-btn" data-kind="session" onclick="setKind('session')">💬 三端全量对话 <span class="tab-count" id="cnt-session">-</span></button>
+        <button class="tab-btn" data-kind="atlas" onclick="setKind('atlas')">🏛️ 图库与影视库 <span class="tab-count" id="cnt-atlas">-</span></button>
+        <button class="tab-btn" data-kind="skill" onclick="setKind('skill')">🧰 全局技能 <span class="tab-count" id="cnt-skill">-</span></button>
+        <button class="tab-btn" data-kind="todo" onclick="setKind('todo')">⏳ 待拍板 <span class="tab-count" id="cnt-todo">-</span></button>
+      </div>
+
+      <div class="subfilter-row">
+        <span class="hot-label">格式快筛：</span>
+        <button class="sub-pill active" data-ext="all" onclick="setExt('all')">全部格式</button>
+        <button class="sub-pill" data-ext="pdf" onclick="setExt('pdf')">📕 只看 PDF</button>
+        <button class="sub-pill" data-ext="office" onclick="setExt('office')">📘 Word / Excel / PPT</button>
+        <button class="sub-pill" data-ext="md" onclick="setExt('md')">📝 Markdown / TXT</button>
+        <button class="sub-pill" data-ext="html" onclick="setExt('html')">🌐 HTML 网页</button>
+        <button class="sub-pill" data-ext="mp4" onclick="setExt('mp4')">🎬 MP4 / MOV 视频</button>
+        <button class="sub-pill" data-ext="image" onclick="setExt('image')">🖼️ 图片 / 分镜</button>
+        <button class="sub-pill" data-ext="audio" onclick="setExt('audio')">🔊 配音 / 音乐</button>
+
+        <span class="hot-label" style="margin-left:12px;">业务域：</span>
+        <button class="sub-pill active" data-cat="all" onclick="setCat('all')">全部领域</button>
+        <button class="sub-pill" data-cat="合同与商务" onclick="setCat('合同与商务')">合同与商务</button>
+        <button class="sub-pill" data-cat="算力与网络" onclick="setCat('算力与网络')">算力与网络</button>
+        <button class="sub-pill" data-cat="影视与图库" onclick="setCat('影视与图库')">影视与图库</button>
+        <button class="sub-pill" data-cat="工具与技能" onclick="setCat('工具与技能')">工具与技能</button>
+      </div>
+    </section>
+
+    <!-- 防误筛高亮提醒黄条 -->
+    <div class="active-filter-alert" id="activeFilterAlert">
+      <span id="activeFilterText">⚠️ 已启用子条件过滤</span>
+      <button class="ctrl-btn active" onclick="resetAllFilters()">✕ 一键清除格式/领域筛选（显示全部类型）</button>
+    </div>
+
+    <!-- 主内容渲染区 -->
+    <main id="mainContent"></main>
+  </div>
+
+  <!-- 完整正文/提示词/对话大字弹窗 -->
+  <div class="modal-backdrop" id="detailModal" onclick="if(event.target===this) closeModal()">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <h3 id="modalTitle">详情</h3>
+          <div class="card-date" id="modalMeta"></div>
+        </div>
+        <div class="controls" id="modalActions"></div>
+      </div>
+      <div class="modal-body" id="modalBody">加载中…</div>
+    </div>
+  </div>
+
+  <div class="toast" id="toastBox"></div>
+
+  <!-- 离线兜底快照与版本探针 -->
+  <script src="data/version.js"></script>
+  <script src="data/snapshot.js"></script>
+  <script>
+    const API_BASE = "http://127.0.0.1:18899";
+    const IS_CLOUD_HOST = /\.github\.io$/i.test(window.location.hostname || "");
+    const JT_GATE_HASH = "6e95ff3e55611d24803014d9de77b401f191f198f9372577e58f9aa2e51771d3";
+    const UI_SCHEMA_VERSION = 3;
+    const ALL_TAB_KEYS = ["all", "doc", "media", "folder", "memory", "session", "atlas", "skill", "todo"];
+    const SYNONYM_CLUSTERS = [
+      ["常青", "国影", "国影中建", "opc", "909works"],
+      ["河传", "河北传媒", "影视学院", "广电总局实验室"],
+      ["报价", "收费", "底价", "价格", "成本", "利润", "核算", "套餐"],
+      ["合同", "协议", "备忘录", "清稿", "可签"],
+      ["八段锦", "理三焦", "符琳琳", "李筱君", "ep01", "社区宣教"],
+      ["换人", "角色替换", "人物替换", "sam3", "swap"],
+      ["特效", "genjutsu", "vfx", "剑阵", "粒子"],
+      ["美国专线", "专线", "西雅图", "手机上网", "热点", "小火箭", "tailscale", "jintai_us_vip"],
+      ["卡顿", "看门狗", "stalls", "资源保护"],
+      ["a机", "172.16.0.10", "h100", "8188"],
+      ["b机", "172.16.0.8", "5090"],
+      ["图库", "历史文化图库", "影视参考图集", "shotdeck"],
+      ["封号", "解封", "申诉", "律师函"],
+      ["网络出口", "派网", "panabit", "ma5800", "olt"],
+    ];
+    const STOPWORDS_RE = /(请问|帮我找一下|帮我找|找一下|在哪里|在哪儿|在哪|是什么|是多少|多少|怎么|打开|上次|之前|那个|关于|给我|帮我|做的|写的|弄的|出的|给|做|弄|写|看|把|的|了|吗|呢|吧|呀)/g;
+
+    function ensureDecodedSnapshot() {
+      if (window.COCKPIT_SNAPSHOT && window.COCKPIT_SNAPSHOT.items) return window.COCKPIT_SNAPSHOT;
+      if (typeof window.COCKPIT_SNAPSHOT_ENC === "string" && window.COCKPIT_SNAPSHOT_ENC.length > 0) {
+        try {
+          const bin = atob(window.COCKPIT_SNAPSHOT_ENC);
+          const keyBytes = new Uint8Array(32);
+          for (let i = 0; i < 32; i++) {
+            keyBytes[i] = parseInt(JT_GATE_HASH.slice(i * 2, i * 2 + 2), 16);
+          }
+          const out = new Uint8Array(bin.length);
+          for (let i = 0; i < bin.length; i++) {
+            out[i] = bin.charCodeAt(i) ^ keyBytes[i & 31] ^ ((i * 31) & 0xff);
+          }
+          const jsonStr = new TextDecoder("utf-8").decode(out);
+          window.COCKPIT_SNAPSHOT = JSON.parse(jsonStr);
+          window.COCKPIT_SNAPSHOT_ENC = "";
+          return window.COCKPIT_SNAPSHOT;
+        } catch (e) {
+          console.error("Snapshot decode error:", e);
+        }
+      }
+      return window.COCKPIT_SNAPSHOT || null;
+    }
+    ensureDecodedSnapshot();
+    const EXT_LABELS = {
+      pdf: "只看 PDF",
+      office: "只看 Word/Excel/PPT",
+      md: "只看 Markdown/TXT",
+      html: "只看 HTML 网页",
+      mp4: "只看 MP4/MOV 视频",
+      image: "只看 图片/分镜",
+      audio: "只看 配音/音乐",
+    };
+
+    let serverOnline = false;
+    let currentKind = "all";
+    let currentExt = "all";
+    let currentCat = "all";
+    let currentResults = [];
+    let debounceTimer = null;
+    let knownVersion = (window.COCKPIT_VERSION && window.COCKPIT_VERSION.version) || 0;
+    let evtSource = null;
+
+    // 全部已渲染卡片的内存对象字典：所有按钮统一通过 data-act + data-id 事件委托读取原始对象，彻底根除反斜杠 C:\Users 转义报错
+    const itemStore = new Map();
+    const promptStore = new Map();
+    const BROWSER_VIEWABLE_EXTS = new Set(["pdf", "mp4", "mov", "png", "jpg", "jpeg", "webp", "wav", "mp3", "html", "htm"]);
+    const INLINE_THEATER_EXTS = new Set(["mp4", "mov", "wav", "mp3", "png", "jpg", "jpeg", "webp", "pdf"]);
+
+    function checkSchemaReload(payload) {
+      const sv = payload && (payload.ui_schema_version || (payload.stats && payload.stats.ui_schema_version));
+      if (sv && Number(sv) > UI_SCHEMA_VERSION && window.location.protocol.startsWith("http")) {
+        window.location.reload();
+        return true;
+      }
+      return false;
+    }
+
+    function fmtNum(n) {
+      return Number(n || 0).toLocaleString("zh-CN");
+    }
+
+    function showToast(msg) {
+      const el = document.getElementById("toastBox");
+      el.textContent = msg;
+      el.classList.add("show");
+      clearTimeout(el._t);
+      el._t = setTimeout(() => el.classList.remove("show"), 2500);
+    }
+
+    function escapeHtml(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function highlightText(text, words) {
+      let safe = escapeHtml(text || "");
+      if (!words || !words.length) return safe;
+      for (const w of words) {
+        if (!w || w.length < 1) continue;
+        const escapedW = w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        try {
+          const re = new RegExp(`(${escapedW})`, "gi");
+          safe = safe.replace(re, "<mark>$1</mark>");
+        } catch (_) {}
+      }
+      return safe;
+    }
+
+    function setFontSize(px) {
+      document.documentElement.style.setProperty("--base-font", px + "px");
+      localStorage.setItem("jintai_cockpit_fsize", String(px));
+      document.querySelectorAll("[data-fsize]").forEach(btn => {
+        btn.classList.toggle("active", Number(btn.dataset.fsize) === px);
+      });
+    }
+
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle("dark");
+      localStorage.setItem("jintai_cockpit_dark", isDark ? "1" : "0");
+      document.getElementById("themeBtn").textContent = isDark ? "☀️ 浅色高对比" : "🌙 深色护眼";
+    }
+
+    function initPrefs() {
+      const savedSize = Number(localStorage.getItem("jintai_cockpit_fsize") || "22");
+      setFontSize([22, 26, 30].includes(savedSize) ? savedSize : 22);
+      if (localStorage.getItem("jintai_cockpit_dark") === "1") {
+        document.body.classList.add("dark");
+        document.getElementById("themeBtn").textContent = "☀️ 浅色高对比";
+      }
+    }
+
+    function syncFilterPillsUI() {
+      document.querySelectorAll("#kindTabs .tab-btn").forEach(b => {
+        b.classList.toggle("active", b.dataset.kind === currentKind);
+      });
+      document.querySelectorAll("[data-ext]").forEach(b => {
+        b.classList.toggle("active", b.dataset.ext === currentExt);
+      });
+      document.querySelectorAll("[data-cat]").forEach(b => {
+        b.classList.toggle("active", b.dataset.cat === currentCat);
+      });
+
+      const alertBox = document.getElementById("activeFilterAlert");
+      const alertTxt = document.getElementById("activeFilterText");
+      const activeParts = [];
+      if (currentExt !== "all") activeParts.push(`格式过滤：${EXT_LABELS[currentExt] || currentExt}`);
+      if (currentCat !== "all") activeParts.push(`业务域：${currentCat}`);
+      if (activeParts.length > 0) {
+        alertTxt.textContent = `⚠️ 注意：当前已开启【${activeParts.join(" ＋ ")}】，非匹配格式已隐藏`;
+        alertBox.classList.add("show");
+      } else {
+        alertBox.classList.remove("show");
+      }
+    }
+
+    function resetAllFilters() {
+      currentKind = "all";
+      currentExt = "all";
+      currentCat = "all";
+      syncFilterPillsUI();
+      refreshView();
+    }
+
+    function setQuickQuery(q) {
+      // 点击热词时自动重置残留的格式筛选（如只看MP4），保证全类型结果完整呈现
+      currentKind = "all";
+      currentExt = "all";
+      currentCat = "all";
+      syncFilterPillsUI();
+      const input = document.getElementById("searchInput");
+      input.value = q;
+      document.getElementById("clearBtn").classList.toggle("visible", !!q);
+      runSearch();
+    }
+
+    function clearSearch() {
+      const input = document.getElementById("searchInput");
+      input.value = "";
+      currentExt = "all";
+      syncFilterPillsUI();
+      document.getElementById("clearBtn").classList.remove("visible");
+      document.getElementById("synonymBanner").textContent = "";
+      input.focus();
+      refreshView();
+    }
+
+    function setKind(k) {
+      currentKind = k;
+      // 切换到“全部目标”或非文档/媒体页签时，自动清除残留的格式筛选，彻底根除误过滤陷阱
+      if (k === "all" || !["doc", "media"].includes(k)) {
+        currentExt = "all";
+      }
+      syncFilterPillsUI();
+      refreshView();
+    }
+
+    function setExt(ext) {
+      currentExt = ext;
+      if (ext !== "all") {
+        if (["pdf", "office", "md", "html"].includes(ext)) {
+          currentKind = "doc";
+        } else if (["mp4", "image", "audio"].includes(ext)) {
+          currentKind = "media";
+        }
+      }
+      syncFilterPillsUI();
+      refreshView();
+    }
+
+    function setCat(cat) {
+      currentCat = cat;
+      syncFilterPillsUI();
+      refreshView();
+    }
+
+    function refreshView(silent = false) {
+      const q = document.getElementById("searchInput").value.trim();
+      if (!q && currentKind === "all" && currentExt === "all" && currentCat === "all") {
+        loadHome(silent);
+      } else {
+        runSearch(silent);
+      }
+    }
+
+    async function copyText(txt, toastPrefix = "✅ 已复制") {
+      try {
+        await navigator.clipboard.writeText(txt);
+        showToast(`${toastPrefix}：${txt.slice(0, 68)}${txt.length > 68 ? "…" : ""}`);
+      } catch (_) {
+        const ta = document.createElement("textarea");
+        ta.value = txt;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+        showToast(toastPrefix);
+      }
+    }
+
+    function copyStoredPrompt(itemId) {
+      const p = promptStore.get(itemId) || "";
+      if (p) {
+        copyText(p, "✅ 已复制完整提示词");
+      } else {
+        showToast("⚠️ 该条目暂无独立提示词字段");
+      }
+    }
+
+    async function openTarget(pathStr, mode = "open", obsRel = "", itemId = "") {
+      // 始终优先直接请求本地 18899 服务执行原生 Win32 前台打开，不依赖缓存布尔值
+      try {
+        const ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+        if (ctrl) setTimeout(() => ctrl.abort(), IS_CLOUD_HOST ? 600 : 3000);
+        const res = await fetch(`${API_BASE}/api/open`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: itemId, path: pathStr, mode, obsidian_rel: obsRel }),
+          signal: ctrl ? ctrl.signal : undefined,
+        });
+        const data = await res.json();
+        serverOnline = true;
+        if (data.ok) {
+          if (data.action === "open_dir") {
+            showToast("📂 已在桌面最前方打开该项目文件夹");
+          } else if (mode === "reveal" || data.action === "reveal_instead_of_exec" || data.action === "reveal_fallback") {
+            showToast("📂 已弹出资源管理器并高亮选中该文件");
+          } else if (mode === "obsidian") {
+            showToast("🟣 已唤起 Obsidian 打开该卡片");
+          } else {
+            showToast("🚀 已调用系统默认程序直接打开：" + basenameOf(pathStr));
+          }
+        } else {
+          showToast("⚠️ " + (data.error || "打开失败"));
+        }
+        return;
+      } catch (_) {
+        serverOnline = false;
+      }
+
+      const it = itemId ? itemStore.get(itemId) : null;
+      if (IS_CLOUD_HOST && it && it.kind === "atlas") {
+        const sub = String(it.subtype || "");
+        let cloudUrl = "https://aikingtai-ctrl.github.io/jintai-history-image-library/index.html";
+        if (sub.includes("影视")) cloudUrl = "https://aikingtai-ctrl.github.io/jintai-history-image-library/sources.html";
+        else if (sub.includes("名人")) cloudUrl = "https://aikingtai-ctrl.github.io/jintai-history-image-library/figures.html";
+        window.open(cloudUrl, "_blank", "noopener");
+        return;
+      }
+      if (mode === "obsidian" && obsRel) {
+        window.location.href = `obsidian://open?vault=${encodeURIComponent("AI永久记忆")}&file=${encodeURIComponent(obsRel)}`;
+        return;
+      }
+      if (!IS_CLOUD_HOST && mode === "open" && pathStr) {
+        const fileUri = "file:///" + String(pathStr).replace(/\\/g, "/");
+        window.open(fileUri, "_blank");
+      }
+      await copyText(pathStr, IS_CLOUD_HOST ? "📋 已复制完整路径" : "📋 已复制路径（双击桌面驾驶舱图标可开启资源管理器直达）");
+    }
+
+    function openPreviewModal(itemId) {
+      const it = itemStore.get(itemId);
+      if (!it) return;
+      if (IS_CLOUD_HOST && !serverOnline) {
+        viewDetail(it.id, it.title, it.summary, it.path, it.obsidian_rel, true);
+        return;
+      }
+      const subLow = String(it.subtype || "").toLowerCase();
+      const modal = document.getElementById("detailModal");
+      const titleEl = document.getElementById("modalTitle");
+      const metaEl = document.getElementById("modalMeta");
+      const bodyEl = document.getElementById("modalBody");
+      const actEl = document.getElementById("modalActions");
+
+      titleEl.textContent = it.title || "预览";
+      metaEl.textContent = `${it.updated_at || ""}${it.size_human ? " · " + it.size_human : ""} · ${it.path || ""}`;
+      actEl.innerHTML = "";
+
+      if (it.path) {
+        const bSys = document.createElement("button");
+        bSys.className = "ctrl-btn active";
+        bSys.textContent = "🚀 用系统程序打开";
+        bSys.onclick = () => openTarget(it.path, "open", "", it.id);
+        actEl.appendChild(bSys);
+
+        const bTab = document.createElement("a");
+        bTab.className = "ctrl-btn";
+        bTab.style.textDecoration = "none";
+        bTab.href = `${API_BASE}/api/file?id=${encodeURIComponent(it.id)}`;
+        bTab.target = "_blank";
+        bTab.rel = "noopener";
+        bTab.textContent = "🌐 新标签页全屏";
+        actEl.appendChild(bTab);
+
+        const bRev = document.createElement("button");
+        bRev.className = "ctrl-btn";
+        bRev.textContent = "📂 定位文件夹";
+        bRev.onclick = () => openTarget(it.path, "reveal", "", it.id);
+        actEl.appendChild(bRev);
+      }
+
+      const closeB = document.createElement("button");
+      closeB.className = "ctrl-btn";
+      closeB.textContent = "✕ 关闭 (Esc)";
+      closeB.onclick = closeModal;
+      actEl.appendChild(closeB);
+
+      const streamUrl = `${API_BASE}/api/file?id=${encodeURIComponent(it.id)}`;
+      bodyEl.style.whiteSpace = "normal";
+      if (["mp4", "mov"].includes(subLow)) {
+        bodyEl.innerHTML = `<div style="text-align:center"><video controls autoplay preload="metadata" style="width:100%;max-height:73vh;border-radius:12px;background:#000;outline:none" src="${streamUrl}"></video></div>`;
+      } else if (["wav", "mp3"].includes(subLow)) {
+        bodyEl.innerHTML = `<div style="padding:36px 16px;text-align:center"><audio controls autoplay style="width:min(760px,100%)" src="${streamUrl}"></audio></div>`;
+      } else if (["png", "jpg", "jpeg", "webp"].includes(subLow)) {
+        bodyEl.innerHTML = `<div style="text-align:center"><img style="max-width:100%;max-height:73vh;border-radius:10px;object-fit:contain" src="${streamUrl}" alt="${escapeHtml(it.title)}" /></div>`;
+      } else if (subLow === "pdf") {
+        bodyEl.innerHTML = `<iframe style="width:100%;height:74vh;border:none;border-radius:10px;background:#fff" src="${streamUrl}"></iframe>`;
+      } else {
+        bodyEl.style.whiteSpace = "pre-wrap";
+        bodyEl.textContent = it.summary || "";
+      }
+      modal.classList.add("open");
+    }
+
+    function buildOfflineDetailBody(stored, sumVal, pathVal, obsVal) {
+      const lines = [];
+      if (stored.category || stored.subtype || stored.updated_at || stored.size_human) {
+        lines.push(`【分类与类型】${stored.category || "综合"} · ${stored.subtype || stored.kind || ""} · ${stored.updated_at || ""}${stored.size_human ? " · " + stored.size_human : ""}`);
+      }
+      if (pathVal) lines.push(`【完整路径】${pathVal}`);
+      if (obsVal) lines.push(`【Obsidian卡片】[[${obsVal}]]`);
+      lines.push("");
+      lines.push(sumVal || "");
+      if (stored.extra && stored.extra.prompt) {
+        lines.push("");
+        lines.push("【完整提示词 / 镜头描述】");
+        lines.push(stored.extra.prompt);
+      }
+      if (stored.extra && Array.isArray(stored.extra.linked_files) && stored.extra.linked_files.length) {
+        lines.push("");
+        lines.push("【关联交付文件】");
+        stored.extra.linked_files.forEach(fp => lines.push("• " + fp));
+      }
+      return lines.join("\n");
+    }
+
+    async function viewDetail(itemId, fallbackTitle, fallbackSummary, fallbackPath, obsRel, skipTheater = false) {
+      const stored = itemStore.get(itemId) || {};
+      const subLow = String(stored.subtype || "").toLowerCase();
+      if (!skipTheater && !IS_CLOUD_HOST && stored.kind === "media" && INLINE_THEATER_EXTS.has(subLow)) {
+        openPreviewModal(itemId);
+        return;
+      }
+      const titleVal = fallbackTitle || stored.title || "详情";
+      const sumVal = fallbackSummary || stored.summary || "";
+      const pathVal = fallbackPath || stored.path || "";
+      const obsVal = obsRel !== undefined ? obsRel : (stored.obsidian_rel || "");
+
+      const modal = document.getElementById("detailModal");
+      const titleEl = document.getElementById("modalTitle");
+      const metaEl = document.getElementById("modalMeta");
+      const bodyEl = document.getElementById("modalBody");
+      const actEl = document.getElementById("modalActions");
+
+      bodyEl.style.whiteSpace = "pre-wrap";
+      titleEl.textContent = titleVal;
+      metaEl.textContent = `${stored.subtype || ""} · ${stored.updated_at || ""} · ${pathVal}`;
+      bodyEl.textContent = IS_CLOUD_HOST ? buildOfflineDetailBody(stored, sumVal, pathVal, obsVal) : "正在读取完整内容…";
+      actEl.innerHTML = "";
+
+      if (promptStore.has(itemId)) {
+        const bp = document.createElement("button");
+        bp.className = "ctrl-btn active";
+        bp.textContent = "📋 复制提示词";
+        bp.onclick = () => copyStoredPrompt(itemId);
+        actEl.appendChild(bp);
+      }
+      if (obsVal) {
+        const b1 = document.createElement("button");
+        b1.className = "ctrl-btn";
+        b1.textContent = "🟣 Obsidian打开";
+        b1.onclick = () => openTarget(pathVal, "obsidian", obsVal, itemId);
+        actEl.appendChild(b1);
+      }
+      if (pathVal) {
+        const bCopy = document.createElement("button");
+        bCopy.className = "ctrl-btn";
+        bCopy.textContent = "📋 复制路径";
+        bCopy.onclick = () => copyText(pathVal, "📋 已复制完整路径");
+        actEl.appendChild(bCopy);
+
+        const bOpen = document.createElement("button");
+        bOpen.className = "ctrl-btn";
+        bOpen.textContent = "🚀 直接打开文件";
+        bOpen.onclick = () => openTarget(pathVal, "open", "", itemId);
+        actEl.appendChild(bOpen);
+
+        const b2 = document.createElement("button");
+        b2.className = "ctrl-btn";
+        b2.textContent = "📂 定位文件夹";
+        b2.onclick = () => openTarget(pathVal, "reveal", "", itemId);
+        actEl.appendChild(b2);
+      }
+      const closeB = document.createElement("button");
+      closeB.className = "ctrl-btn";
+      closeB.textContent = "✕ 关闭 (Esc)";
+      closeB.onclick = closeModal;
+      actEl.appendChild(closeB);
+
+      modal.classList.add("open");
+
+      if (IS_CLOUD_HOST) return;
+      try {
+        const res = await fetch(`${API_BASE}/api/detail?id=${encodeURIComponent(itemId)}`);
+        const data = await res.json();
+        serverOnline = true;
+        if (data.ok && data.item) {
+          metaEl.textContent = `${data.item.subtype} · ${data.item.updated_at} · ${data.item.path}`;
+          bodyEl.textContent = data.item.body || data.item.summary;
+        } else {
+          bodyEl.textContent = buildOfflineDetailBody(stored, sumVal, pathVal, obsVal);
+        }
+      } catch (_) {
+        bodyEl.textContent = buildOfflineDetailBody(stored, sumVal, pathVal, obsVal);
+      }
+    }
+
+    function closeModal() {
+      const modal = document.getElementById("detailModal");
+      const bodyEl = document.getElementById("modalBody");
+      bodyEl.querySelectorAll("video, audio").forEach(m => {
+        try { m.pause(); m.removeAttribute("src"); m.load(); } catch (_) {}
+      });
+      bodyEl.innerHTML = "";
+      modal.classList.remove("open");
+    }
+
+    function kindBadgeHtml(it) {
+      if (it.kind === "doc") {
+        const extMap = { pdf: "📕 PDF", docx: "📘 Word", doc: "📘 Word", xlsx: "📗 Excel", xls: "📗 Excel", csv: "📗 CSV", pptx: "📙 PPT", html: "🌐 网页", htm: "🌐 网页", md: "📝 Markdown", txt: "📄 文本" };
+        const label = extMap[it.subtype] || ("📄 " + String(it.subtype || "").toUpperCase());
+        return `<span class="badge badge-doc">${escapeHtml(label)}</span>`;
+      }
+      if (it.kind === "media") {
+        const mMap = { mp4: "🎬 视频成片", mov: "🎬 视频", mkv: "🎬 视频", png: "🖼️ 图片/分镜", jpg: "🖼️ 照片", jpeg: "🖼️ 照片", webp: "🖼️ 图片", wav: "🔊 配音/WAV", mp3: "🎵 音频/MP3", blend: "🧊 Blender", zip: "📦 归档包", "7z": "📦 归档包" };
+        const label = mMap[it.subtype] || ("🎬 " + String(it.subtype || "").toUpperCase());
+        return `<span class="badge badge-media">${escapeHtml(label)}</span>`;
+      }
+      if (it.kind === "folder") {
+        return `<span class="badge badge-folder">📁 项目目录</span>`;
+      }
+      if (it.kind === "memory") {
+        return `<span class="badge badge-mem">📌 ${escapeHtml(it.subtype)}</span>`;
+      }
+      if (it.kind === "session") {
+        return `<span class="badge badge-sess">💬 ${escapeHtml(it.subtype)}</span>`;
+      }
+      if (it.kind === "atlas") {
+        return `<span class="badge badge-atlas">🏛️ ${escapeHtml(it.subtype)}</span>`;
+      }
+      return `<span class="badge badge-skill">🧰 全局 Skill</span>`;
+    }
+
+    function basenameOf(p) {
+      const parts = String(p || "").split(/[\\/]/);
+      return parts[parts.length - 1] || p;
+    }
+
+    function renderCard(it, highlights = []) {
+      itemStore.set(it.id, it);
+      if (it.extra && it.extra.prompt) {
+        promptStore.set(it.id, it.extra.prompt);
+      }
+      const idAttr = escapeHtml(it.id);
+      const titleHtml = highlightText(it.title, highlights);
+      const summaryHtml = highlightText(it.summary, highlights);
+      const todoBadge = it.has_todo ? `<span class="badge badge-todo">⏳ 待拍板</span>` : "";
+      const catBadge = it.category ? `<span class="badge badge-cat">${escapeHtml(it.category)}</span>` : "";
+
+      let linkedHtml = "";
+      const linkedFiles = (it.extra && it.extra.linked_files) || [];
+      if (linkedFiles.length > 0 && !["doc", "media", "folder"].includes(it.kind)) {
+        const chips = linkedFiles.slice(0, 4).map((fp, idx) => {
+          return `<button type="button" class="linked-file-chip" title="${escapeHtml(fp)}" data-act="open-linked" data-id="${idAttr}" data-fidx="${idx}">📎 直开：${escapeHtml(basenameOf(fp))}</button>`;
+        }).join("");
+        linkedHtml = `<div class="linked-files-box">${chips}</div>`;
+      }
+
+      let actions = "";
+      if (it.kind === "doc" || it.kind === "media") {
+        const subLow = String(it.subtype || "").toLowerCase();
+        const isVideoAudio = ["mp4", "mov", "wav", "mp3"].includes(subLow);
+        const isImg = ["png", "jpg", "jpeg", "webp"].includes(subLow);
+        const isPdf = subLow === "pdf";
+        if (isVideoAudio || isImg) {
+          const playLabel = isVideoAudio ? "▶️ 页内秒播" : "🖼️ 页内秒看";
+          actions = `
+            <button type="button" class="act-btn primary" data-act="preview-media" data-id="${idAttr}">${playLabel}</button>
+            <button type="button" class="act-btn" data-act="open" data-id="${idAttr}">🚀 系统播放器打开</button>
+            <button type="button" class="act-btn" data-act="reveal" data-id="${idAttr}">📂 定位文件夹</button>
+            <button type="button" class="act-btn" data-act="copy-path" data-id="${idAttr}">📋 复制路径</button>
+          `;
+        } else {
+          const pdfInlineBtn = isPdf
+            ? `<button type="button" class="act-btn" data-act="preview-media" data-id="${idAttr}">📕 页内秒看PDF</button>`
+            : (BROWSER_VIEWABLE_EXTS.has(subLow)
+                ? `<a class="act-btn" style="text-decoration:none" href="${API_BASE}/api/file?id=${encodeURIComponent(it.id)}" target="_blank" rel="noopener">🌐 网页秒看</a>`
+                : "");
+          const readBtn = ["md", "txt", "csv", "pdf", "docx", "xlsx", "pptx"].includes(subLow)
+            ? `<button type="button" class="act-btn" data-act="detail" data-id="${idAttr}">📖 大字预览正文</button>`
+            : "";
+          actions = `
+            <button type="button" class="act-btn primary" data-act="open" data-id="${idAttr}">🚀 直接打开文件</button>
+            ${pdfInlineBtn}
+            <button type="button" class="act-btn" data-act="reveal" data-id="${idAttr}">📂 定位文件夹</button>
+            ${readBtn}
+            <button type="button" class="act-btn" data-act="copy-path" data-id="${idAttr}">📋 复制路径</button>
+          `;
+        }
+      } else if (it.kind === "folder") {
+        actions = `
+          <button type="button" class="act-btn primary" data-act="open" data-id="${idAttr}">📂 直接打开文件夹</button>
+          <button type="button" class="act-btn" data-act="copy-path" data-id="${idAttr}">📋 复制路径</button>
+        `;
+      } else if (it.kind === "memory") {
+        actions = `
+          <button type="button" class="act-btn primary" data-act="detail" data-id="${idAttr}">📖 看完整结论</button>
+          ${it.obsidian_rel ? `<button type="button" class="act-btn" data-act="obsidian" data-id="${idAttr}">🟣 Obsidian打开</button>` : ""}
+          <button type="button" class="act-btn" data-act="reveal" data-id="${idAttr}">📂 定位文件</button>
+          <button type="button" class="act-btn" data-act="copy-path" data-id="${idAttr}">📋 复制路径</button>
+        `;
+      } else if (it.kind === "session") {
+        const claudeUrl = (it.extra && it.extra.app_url) ? it.extra.app_url : "";
+        actions = `
+          <button type="button" class="act-btn primary" data-act="detail" data-id="${idAttr}">📖 阅读完整对话</button>
+          ${claudeUrl ? `<a class="act-btn" style="text-decoration:none" href="${escapeHtml(claudeUrl)}">⚡ 跳回 Claude</a>` : ""}
+          ${it.obsidian_rel ? `<button type="button" class="act-btn" data-act="obsidian" data-id="${idAttr}">🟣 归档原文</button>` : ""}
+          <button type="button" class="act-btn" data-act="copy-path" data-id="${idAttr}">📋 复制路径</button>
+        `;
+      } else if (it.kind === "atlas") {
+        actions = `
+          <button type="button" class="act-btn primary" data-act="copy-prompt" data-id="${idAttr}">📋 复制完整提示词</button>
+          <button type="button" class="act-btn" data-act="detail" data-id="${idAttr}">📖 考证与全文</button>
+          <button type="button" class="act-btn" data-act="open" data-id="${idAttr}">🏛️ 打开图库专页</button>
+        `;
+      } else {
+        actions = `
+          <button type="button" class="act-btn primary" data-act="copy-skill" data-id="${idAttr}">⚡ 复制 /${escapeHtml(it.title)}</button>
+          <button type="button" class="act-btn" data-act="detail" data-id="${idAttr}">📖 查看用法</button>
+          <button type="button" class="act-btn" data-act="reveal" data-id="${idAttr}">📂 技能目录</button>
+        `;
+      }
+
+      return `
+        <article class="card kind-${escapeHtml(it.kind)}">
+          <div>
+            <div class="card-top">
+              <div class="badges">
+                ${kindBadgeHtml(it)}
+                ${todoBadge}
+                ${catBadge}
+              </div>
+              <span class="card-date">${escapeHtml(it.updated_at || "")}${it.size_human ? " · " + escapeHtml(it.size_human) : ""}</span>
+            </div>
+            <h3 class="card-title" data-act="title-click" data-id="${idAttr}" title="点击直接打开">${titleHtml}</h3>
+            <p class="card-summary" style="margin-top:8px;">${summaryHtml}</p>
+            ${linkedHtml}
+          </div>
+          <div class="card-actions">${actions}</div>
+        </article>
+      `;
+    }
+
+    function updateTabCounts(counts) {
+      if (!counts) return;
+      for (const k of ALL_TAB_KEYS) {
+        const el = document.getElementById("cnt-" + k);
+        if (el && counts[k] !== undefined) el.textContent = fmtNum(counts[k]);
+      }
+    }
+
+    function updateScaleBanner(stats, elapsedMs) {
+      if (!stats || !stats.total_items) return;
+      knownVersion = stats.version || knownVersion;
+      const timeOnly = (stats.built_at || "").split(" ")[1] || stats.built_at || "";
+      document.getElementById("serverDot").classList.remove("offline");
+      if (IS_CLOUD_HOST && !serverOnline) {
+        document.getElementById("serverStatusText").textContent =
+          `☁️ 云端持续同步版 · 最新同步 ${stats.built_at || timeOnly}` + (elapsedMs !== undefined ? ` · 检索 ${elapsedMs} ms` : "");
+      } else {
+        document.getElementById("serverStatusText").textContent =
+          `🟢 实时自动同步中 · 最新同步 ${timeOnly}` + (elapsedMs !== undefined ? ` · 检索 ${elapsedMs} ms` : "");
+      }
+
+      document.getElementById("scaleSummaryLeft").innerHTML =
+        `全机实时纳管：<strong>${fmtNum(stats.total_items)}</strong> 条主索引目标（底层覆盖 <strong>${fmtNum(stats.underlying_assets_estimate)}+</strong> 条文件/提示词/影视镜头/对话）`;
+      document.getElementById("scaleSummaryRight").innerHTML =
+        `文档 <strong>${fmtNum(stats.docs)}</strong> · 视音频图 <strong>${fmtNum(stats.media)}</strong> · 项目目录 <strong>${fmtNum(stats.folders)}</strong> · 图库影视 <strong>${fmtNum(stats.atlas)}</strong> · 记忆与对话 <strong>${fmtNum((stats.memories || 0) + (stats.sessions || 0))}</strong> · 技能 <strong>${fmtNum(stats.skills)}</strong>`;
+    }
+
+    function renderHomeSections(data) {
+      const stats = data.stats || {};
+      updateScaleBanner(stats, data.elapsed_ms);
+      updateTabCounts({
+        all: stats.total_items || 0,
+        doc: stats.docs || 0,
+        media: stats.media || 0,
+        folder: stats.folders || 0,
+        memory: stats.memories || 0,
+        session: stats.sessions || 0,
+        atlas: stats.atlas || 0,
+        skill: stats.skills || 0,
+        todo: stats.todos || 0,
+      });
+
+      const hotBar = document.getElementById("hotBar");
+      if (data.hot_queries && hotBar.children.length <= 1) {
+        data.hot_queries.forEach(hq => {
+          const btn = document.createElement("button");
+          btn.className = "hot-chip";
+          btn.textContent = hq.label;
+          btn.onclick = () => setQuickQuery(hq.q);
+          hotBar.appendChild(btn);
+        });
+      }
+
+      document.getElementById("searchSummaryText").textContent =
+        `全盘就绪（C盘全用户仓 + D盘整盘 + 历史文化图库 + 影视参考库 + 三端对话）：输入任意词毫秒直达，回车直接打开首项`;
+
+      let html = "";
+      if (data.topic_hubs && data.topic_hubs.length) {
+        const hubCards = data.topic_hubs.map(th => `
+          <button type="button" class="topic-hub-card" data-act="topic-hub" data-topic-q="${escapeHtml(th.q)}">
+            <div>
+              <div class="topic-hub-title">${escapeHtml(th.title)}</div>
+              <div class="topic-hub-desc">${escapeHtml(th.desc)}</div>
+            </div>
+            <span class="topic-hub-arrow">一键汇集 →</span>
+          </button>
+        `).join("");
+        html += `
+          <div class="section-header" style="margin-top:8px;">
+            <h2>🗂️ 金泰八大重点业务专题归集舱（一键聚齐该专题全部合同 · 成片 · 目录 · 结论 · 对话）</h2>
+          </div>
+          <div class="topic-hubs-grid">${hubCards}</div>
+        `;
+      }
+      if (data.recent_docs && data.recent_docs.length) {
+        html += `
+          <div class="section-header">
+            <h2>📄 最新正式文档与表格（PDF / Word / Excel / PPT）</h2>
+            <button class="ctrl-btn" onclick="setKind('doc')">查看全部 ${fmtNum(stats.docs)} 份文档 →</button>
+          </div>
+          <div class="cards-grid">${data.recent_docs.slice(0, 6).map(x => renderCard(x)).join("")}</div>
+        `;
+      }
+
+      if (data.recent_media && data.recent_media.length) {
+        html += `
+          <div class="section-header">
+            <h2>🎬 最新视频成片与视听母带</h2>
+            <button class="ctrl-btn" onclick="setKind('media')">查看全部 ${fmtNum(stats.media)} 份视听与图片资产 →</button>
+          </div>
+          <div class="cards-grid">${data.recent_media.slice(0, 6).map(x => renderCard(x)).join("")}</div>
+        `;
+      }
+
+      if (data.key_folders && data.key_folders.length) {
+        html += `
+          <div class="section-header">
+            <h2>📁 最近活跃项目文件夹（一键在资源管理器打开目录）</h2>
+            <button class="ctrl-btn" onclick="setKind('folder')">查看全部 ${fmtNum(stats.folders)} 个项目目录 →</button>
+          </div>
+          <div class="cards-grid">${data.key_folders.slice(0, 6).map(x => renderCard(x)).join("")}</div>
+        `;
+      }
+
+      if (data.todos && data.todos.length) {
+        html += `
+          <div class="section-header">
+            <h2>⏳ 待拍板 / 待确认事项</h2>
+            <button class="ctrl-btn" onclick="setKind('todo')">查看全部 ${fmtNum(stats.todos)} 项待办 →</button>
+          </div>
+          <div class="cards-grid">${data.todos.slice(0, 6).map(x => renderCard(x)).join("")}</div>
+        `;
+      }
+
+      if (data.recent_memories && data.recent_memories.length) {
+        html += `
+          <div class="section-header">
+            <h2>📌 最近更新的共享权威结论</h2>
+            <button class="ctrl-btn" onclick="setKind('memory')">查看全部 ${fmtNum(stats.memories)} 张记忆卡 →</button>
+          </div>
+          <div class="cards-grid">${data.recent_memories.slice(0, 6).map(x => renderCard(x)).join("")}</div>
+        `;
+      }
+
+      if (data.recent_sessions && data.recent_sessions.length) {
+        html += `
+          <div class="section-header">
+            <h2>💬 最近三端实时与归档对话（Antigravity / Codex / Claude）</h2>
+            <button class="ctrl-btn" onclick="setKind('session')">查看全部 ${fmtNum(stats.sessions)} 场对话 →</button>
+          </div>
+          <div class="cards-grid">${data.recent_sessions.slice(0, 6).map(x => renderCard(x)).join("")}</div>
+        `;
+      }
+
+      document.getElementById("mainContent").innerHTML = html;
+      currentResults = [...(data.recent_docs || []), ...(data.recent_media || [])];
+    }
+
+    async function loadHome(silent = false) {
+      if (!IS_CLOUD_HOST) {
+        try {
+          const res = await fetch(`${API_BASE}/api/home`);
+          const data = await res.json();
+          if (checkSchemaReload(data)) return;
+          serverOnline = true;
+          renderHomeSections(data);
+          connectRealtimeSSE();
+          return;
+        } catch (_) {
+          serverOnline = false;
+        }
+      } else {
+        serverOnline = false;
+      }
+
+      ensureDecodedSnapshot();
+      if (!silent && window.COCKPIT_SNAPSHOT) {
+        const snap = window.COCKPIT_SNAPSHOT;
+        const items = snap.items || [];
+        renderHomeSections({
+          stats: snap.stats,
+          elapsed_ms: 1.5,
+          hot_queries: [
+            { label: "💰 常青/国影报价全套", q: "常青 报价" },
+            { label: "📜 河传白名单与共建协议", q: "河传 协议" },
+            { label: "🌐 网络出口与OLT核价", q: "网络出口" },
+            { label: "🧮 算力中心扩容与成本利润", q: "算力 成本 利润" },
+            { label: "🎬 门外的人 / D盘成片", q: "门外的人" },
+            { label: "🥋 八段锦真医护成片", q: "八段锦" },
+            { label: "💬 微信收到的文件", q: "微信接收文件" },
+            { label: "🏛️ 历史图库 · 唐代甲胄", q: "唐代 甲胄" },
+          ],
+          topic_hubs: [
+            { title: "📜 河传·影视学院合作", desc: "共建协议 · 白名单申请 · 实训大纲 · 巨舰成片", q: "河传" },
+            { title: "💰 常青·国影AI.OPC合作", desc: "收费报价体系 · 算力底座方案 · 合作备忘录", q: "常青 | 国影" },
+            { title: "🛡️ 内容防火墙与网络出口", desc: "v3.0多模态护栏 · 派网Panabit · 华为OLT全套核价", q: "防火墙 | 网络出口" },
+            { title: "🧮 算力中心·成本利润与运维", desc: "H100八卡集群 · 积分边际成本 · 国高运维合同", q: "算力 成本 | 国高 运维" },
+            { title: "🥋 复兴医院·八段锦宣教", desc: "EP01-08真医护母带 · 48页圣经 · 脑腿同频全集", q: "八段锦 | 复兴医院 | 脑腿同频" },
+            { title: "🎬 影视短片与品牌宣传片", desc: "门外的人 · 关云长 · 央视诗经 · 金泰品牌宣传片", q: "门外的人 | 关云长 | 诗经 | 源自算力" },
+            { title: "🔬 国家发明专利与严选工作流", desc: "9项核心发明专利交底书 · H3文武双全 · RunningHub审计", q: "专利 | RunningHub | 文武双全" },
+            { title: "💬 微信接收文件专柜", desc: "自动归拢微信里外部发来的 PDF / Word / Excel 附件", q: "微信接收文件" },
+          ],
+          recent_docs: items.filter(x => x.kind === "doc").slice(0, 6),
+          recent_media: items.filter(x => x.kind === "media").slice(0, 6),
+          key_folders: items.filter(x => x.kind === "folder").slice(0, 6),
+          todos: items.filter(x => x.has_todo).slice(0, 6),
+          recent_memories: items.filter(x => x.kind === "memory").slice(0, 6),
+          recent_sessions: items.filter(x => x.kind === "session").slice(0, 6),
+        });
+      }
+    }
+
+    function matchSubtypeExt(subtype, extFilter) {
+      if (!extFilter || extFilter === "all") return true;
+      const s = String(subtype || "").toLowerCase();
+      if (extFilter === "office") return ["docx", "doc", "xlsx", "xls", "pptx", "ppt", "csv"].includes(s);
+      if (extFilter === "mp4") return ["mp4", "mov", "mkv", "avi"].includes(s);
+      if (extFilter === "image") return ["png", "jpg", "jpeg", "webp"].includes(s);
+      if (extFilter === "audio") return ["wav", "mp3"].includes(s);
+      if (extFilter === "html") return ["html", "htm"].includes(s);
+      if (extFilter === "md") return ["md", "txt"].includes(s);
+      return s === extFilter;
+    }
+
+    function expandTermSynonymsJS(tok) {
+      const tl = tok.toLowerCase();
+      const variants = [tl];
+      const disp = [];
+      for (const cl of SYNONYM_CLUSTERS) {
+        if (cl.some(c => c.toLowerCase() === tl)) {
+          for (const c of cl) {
+            const clLow = c.toLowerCase();
+            if (!variants.includes(clLow)) {
+              variants.push(clLow);
+              disp.push(c);
+            }
+          }
+        }
+      }
+      return { variants, disp };
+    }
+
+    function offlineSearch(q) {
+      const t0 = performance.now();
+      ensureDecodedSnapshot();
+      const snap = window.COCKPIT_SNAPSHOT || { items: [] };
+      const rawBranches = q.toLowerCase().split("|").map(b => b.replace(STOPWORDS_RE, " ").trim().split(/\s+/).filter(Boolean)).filter(b => b.length > 0);
+      const highlights = new Set();
+      const synNotes = [];
+      const seenSyn = new Set();
+
+      const expandedBranches = rawBranches.map(tokens => {
+        return tokens.map(tok => {
+          const { variants, disp } = expandTermSynonymsJS(tok);
+          variants.forEach(v => highlights.add(v));
+          if (disp.length > 0) {
+            const note = `${tok} → ${disp.slice(0, 4).join("/")}`;
+            if (!seenSyn.has(note)) {
+              seenSyn.add(note);
+              synNotes.push(note);
+            }
+          }
+          return variants;
+        });
+      });
+
+      const counts = { all: 0, doc: 0, media: 0, folder: 0, memory: 0, session: 0, atlas: 0, skill: 0, todo: 0 };
+      const scored = [];
+
+      for (const it of snap.items) {
+        if (!matchSubtypeExt(it.subtype, currentExt)) continue;
+        if (currentCat !== "all" && it.category !== currentCat) continue;
+
+        let score = 0;
+        if (expandedBranches.length > 0) {
+          const titleLow = String(it.title || "").toLowerCase();
+          const sumLow = String(it.summary || "").toLowerCase();
+          const pyLow = String(it.py || "").toLowerCase();
+          const catLow = String(it.category || "").toLowerCase();
+          const hay = `${titleLow} ${sumLow} ${pyLow} ${catLow}`;
+
+          let branchHit = false;
+          for (const br of expandedBranches) {
+            if (br.every(varGroup => varGroup.some(v => hay.includes(v)))) {
+              branchHit = true;
+              for (const varGroup of br) {
+                for (const v of varGroup) {
+                  if (titleLow.includes(v)) score += 18;
+                  else if (sumLow.includes(v)) score += 6;
+                  else if (pyLow.includes(v)) score += 4;
+                }
+              }
+            }
+          }
+          if (!branchHit) continue;
+        }
+
+        counts.all += 1;
+        counts[it.kind] = (counts[it.kind] || 0) + 1;
+        if (it.has_todo) counts.todo += 1;
+
+        if (currentKind !== "all") {
+          if (currentKind === "todo" && !it.has_todo) continue;
+          if (currentKind !== "todo" && it.kind !== currentKind) continue;
+        }
+        scored.push({ it, score, ts: Number(it.sort_ts || 0) });
+      }
+
+      if (expandedBranches.length > 0) {
+        scored.sort((a, b) => (b.score - a.score) || (b.ts - a.ts));
+      }
+
+      return {
+        elapsed_ms: Number((performance.now() - t0).toFixed(2)),
+        highlights: Array.from(highlights).sort((a, b) => b.length - a.length).slice(0, 16),
+        synonym_notes: synNotes,
+        counts,
+        items: scored.slice(0, 120).map(x => x.it),
+      };
+    }
+
+    async function runSearch() {
+      const q = document.getElementById("searchInput").value.trim();
+      let data;
+      if (!IS_CLOUD_HOST) {
+        try {
+          const url = `${API_BASE}/api/search?q=${encodeURIComponent(q)}&kind=${encodeURIComponent(currentKind)}&ext=${encodeURIComponent(currentExt)}&cat=${encodeURIComponent(currentCat)}&limit=120`;
+          const res = await fetch(url);
+          data = await res.json();
+          if (checkSchemaReload(data)) return;
+          serverOnline = true;
+          connectRealtimeSSE();
+        } catch (_) {
+          serverOnline = false;
+          data = offlineSearch(q);
+        }
+      } else {
+        serverOnline = false;
+        data = offlineSearch(q);
+      }
+
+      updateTabCounts(data.counts);
+      currentResults = data.items || [];
+
+      const synEl = document.getElementById("synonymBanner");
+      if (data.synonym_notes && data.synonym_notes.length) {
+        synEl.textContent = "🧠 智能同义词扩展：" + data.synonym_notes.join(" ； ");
+      } else {
+        synEl.textContent = data.used_or_fallback ? "💡 已自动切换为宽泛关联匹配" : "";
+      }
+
+      const totalHit = (data.counts && data.counts.all) !== undefined ? data.counts.all : currentResults.length;
+      document.getElementById("searchSummaryText").textContent =
+        `⚡ 检索耗时 ${data.elapsed_ms} ms · 全库共命中 ${fmtNum(totalHit)} 条目标（当前展示前 ${currentResults.length} 条精选）`;
+
+      const mainEl = document.getElementById("mainContent");
+      if (!currentResults.length) {
+        mainEl.innerHTML = `
+          <div class="empty-box">
+            <h3 style="margin:0 0 10px;">当前筛选下未找到与「${escapeHtml(q)}」匹配的条目</h3>
+            <div style="margin-bottom:16px;">${currentExt !== "all" || currentCat !== "all" || currentKind !== "all" ? "检测到当前开启了分类或格式过滤，点击下方按钮可查看全库所有类型结果：" : "建议缩短关键词（如只输 2 个核心字）"}</div>
+            ${(currentExt !== "all" || currentCat !== "all" || currentKind !== "all") ? `<button class="ctrl-btn active" onclick="resetAllFilters()">🔄 清除筛选并搜全库 (${fmtNum(totalHit)} 条)</button>` : ""}
+          </div>
+        `;
+        return;
+      }
+
+      // 在“全部目标”页签且有查询词时，按七大资产层清晰分组展示，并标注该类总命中数
+      if (currentKind === "all" && q) {
+        const groups = [
+          { key: "doc", title: "📄 匹配的文档与表格（PDF / Word / Excel / Markdown / 网页）", max: 10 },
+          { key: "media", title: "🎬 匹配的视频成片 · 设计图 · 音频资产", max: 8 },
+          { key: "folder", title: "📁 匹配的项目文件夹（一键直开目录）", max: 8 },
+          { key: "memory", title: "📌 匹配的权威记忆结论与复盘", max: 8 },
+          { key: "session", title: "💬 匹配的三端原对话（Antigravity / Codex / Claude）", max: 8 },
+          { key: "atlas", title: "🏛️ 匹配的历史文化图库与影视镜头参考", max: 8 },
+          { key: "skill", title: "🧰 匹配的全局 AI 技能", max: 6 },
+        ];
+
+        let groupedHtml = "";
+        for (const g of groups) {
+          const arr = currentResults.filter(x => x.kind === g.key);
+          const totalInKind = (data.counts && data.counts[g.key]) || arr.length;
+          if (arr.length > 0) {
+            groupedHtml += `
+              <div class="section-header">
+                <h2>${g.title}（共命中 ${fmtNum(totalInKind)} 条）</h2>
+                ${totalInKind > arr.length ? `<button class="ctrl-btn" onclick="setKind('${g.key}')">查看该类全部 ${fmtNum(totalInKind)} 条 →</button>` : ""}
+              </div>
+              <div class="cards-grid">${arr.slice(0, g.max).map(x => renderCard(x, data.highlights)).join("")}</div>
+            `;
+          } else if (totalInKind > 0) {
+            groupedHtml += `
+              <div class="section-header">
+                <h2>${g.title}（共命中 ${fmtNum(totalInKind)} 条）</h2>
+                <button class="ctrl-btn active" onclick="setKind('${g.key}')">点击展开这 ${fmtNum(totalInKind)} 条结果 →</button>
+              </div>
+            `;
+          }
+        }
+        mainEl.innerHTML = groupedHtml;
+      } else {
+        mainEl.innerHTML = `<div class="cards-grid">${currentResults.map(x => renderCard(x, data.highlights)).join("")}</div>`;
+      }
+    }
+
+    async function rebuildIndex() {
+      const btn = document.getElementById("rebuildBtn");
+      btn.textContent = "⏳ 正在增量同步…";
+      btn.disabled = true;
+      try {
+        if (!IS_CLOUD_HOST) {
+          const res = await fetch(`${API_BASE}/api/rebuild`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ full: false }),
+          });
+          const data = await res.json();
+          if (data.ok && data.stats) {
+            updateScaleBanner(data.stats);
+            showToast(`✅ 本地与云端同步已触发：共纳管 ${fmtNum(data.stats.total_items)} 条主目标`);
+            refreshView(true);
+            return;
+          }
+        }
+        // 云端或离线模式：动态重拉最新 version.js 与 snapshot.js
+        await new Promise((resolve) => {
+          const s = document.createElement("script");
+          s.src = `data/version.js?t=${Date.now()}`;
+          s.onload = () => {
+            s.remove();
+            const snapS = document.createElement("script");
+            snapS.src = `data/snapshot.js?t=${Date.now()}`;
+            snapS.onload = () => {
+              snapS.remove();
+              ensureDecodedSnapshot();
+              if (window.COCKPIT_VERSION) updateScaleBanner(window.COCKPIT_VERSION);
+              refreshView(true);
+              showToast("✅ 已同步最新云端索引数据");
+              resolve();
+            };
+            snapS.onerror = () => { snapS.remove(); resolve(); };
+            document.body.appendChild(snapS);
+          };
+          s.onerror = () => { s.remove(); resolve(); };
+          document.body.appendChild(s);
+        });
+      } catch (_) {
+        showToast("⚠️ 正在使用当前最新快照数据");
+      } finally {
+        btn.textContent = "🔄 立即同步";
+        btn.disabled = false;
+      }
+    }
+
+    /* ============ 永久实时热同步引擎（SSE 毫秒推送 + 轮询双保险 + 离线/云端热重载） ============ */
+    function handleIncomingStats(stats) {
+      if (checkSchemaReload(stats)) return;
+      if (!stats || !stats.version) return;
+      if (knownVersion && stats.version !== knownVersion) {
+        knownVersion = stats.version;
+        updateScaleBanner(stats);
+        const modalOpen = document.getElementById("detailModal").classList.contains("open");
+        if (!modalOpen) {
+          refreshView(true);
+        }
+      } else if (!knownVersion) {
+        knownVersion = stats.version;
+        updateScaleBanner(stats);
+      }
+    }
+
+    function connectRealtimeSSE() {
+      if (evtSource || IS_CLOUD_HOST) return;
+      try {
+        evtSource = new EventSource(`${API_BASE}/api/events`);
+        evtSource.onmessage = ev => {
+          try {
+            const st = JSON.parse(ev.data);
+            serverOnline = true;
+            handleIncomingStats(st);
+          } catch (_) {}
+        };
+        evtSource.onerror = () => {
+          try { evtSource.close(); } catch (_) {}
+          evtSource = null;
+        };
+      } catch (_) {
+        evtSource = null;
+      }
+    }
+
+    // 健康心跳与云端/离线 version.js 自动热重载探针
+    setInterval(async () => {
+      if (!IS_CLOUD_HOST) {
+        try {
+          const res = await fetch(`${API_BASE}/api/ping`);
+          const d = await res.json();
+          if (checkSchemaReload(d)) return;
+          if (d.ok) {
+            const wasOffline = !serverOnline;
+            serverOnline = true;
+            connectRealtimeSSE();
+            if (wasOffline) {
+              refreshView(true);
+            } else if (d.stats) {
+              handleIncomingStats(d.stats);
+            }
+            return;
+          }
+        } catch (_) {
+          serverOnline = false;
+        }
+      }
+
+      // 云端或 file:/// 离线状态下动态重载 data/version.js 检测最新推送
+      const s = document.createElement("script");
+      s.src = `data/version.js?t=${Date.now()}`;
+      s.onload = () => {
+        s.remove();
+        if (window.COCKPIT_VERSION && window.COCKPIT_VERSION.version !== knownVersion) {
+          const snapS = document.createElement("script");
+          snapS.src = `data/snapshot.js?t=${Date.now()}`;
+          snapS.onload = () => {
+            snapS.remove();
+            ensureDecodedSnapshot();
+            handleIncomingStats(window.COCKPIT_VERSION);
+          };
+          document.body.appendChild(snapS);
+        }
+      };
+      s.onerror = () => s.remove();
+      document.body.appendChild(s);
+    }, IS_CLOUD_HOST ? 45000 : 8000);
+
+    // 全局统一事件委托：所有卡片按钮与标题点击直接从 itemStore 读取原始路径，0 字符串转义隐患
+    document.addEventListener("click", ev => {
+      const target = ev.target.closest("[data-act]");
+      if (!target) return;
+      const act = target.dataset.act;
+      if (act === "topic-hub") {
+        const tq = target.dataset.topicQ || "";
+        if (tq) setQuickQuery(tq);
+        return;
+      }
+      const itemId = target.dataset.id;
+      const it = itemStore.get(itemId);
+      if (!it) return;
+
+      if (act === "open") {
+        openTarget(it.path, "open", "", it.id);
+      } else if (act === "reveal") {
+        openTarget(it.path, "reveal", "", it.id);
+      } else if (act === "obsidian") {
+        openTarget(it.path, "obsidian", it.obsidian_rel || "", it.id);
+      } else if (act === "copy-path") {
+        copyText(it.path || "", "📋 已复制完整路径");
+      } else if (act === "copy-prompt") {
+        copyStoredPrompt(it.id);
+      } else if (act === "copy-skill") {
+        copyText("/" + it.title, "⚡ 已复制技能调用名");
+      } else if (act === "preview-media") {
+        openPreviewModal(it.id);
+      } else if (act === "detail") {
+        viewDetail(it.id, it.title, it.summary, it.path, it.obsidian_rel);
+      } else if (act === "open-linked") {
+        const fidx = Number(target.dataset.fidx || "0");
+        const lf = (it.extra && it.extra.linked_files && it.extra.linked_files[fidx]) || "";
+        if (lf) openTarget(lf, "open", "", "");
+      } else if (act === "title-click") {
+        const subLow = String(it.subtype || "").toLowerCase();
+        if (it.kind === "media" && ["mp4", "mov", "wav", "mp3", "png", "jpg", "jpeg", "webp"].includes(subLow)) {
+          openPreviewModal(it.id);
+        } else if (["doc", "media", "folder"].includes(it.kind)) {
+          openTarget(it.path, "open", "", it.id);
+        } else {
+          viewDetail(it.id, it.title, it.summary, it.path, it.obsidian_rel);
+        }
+      }
+    });
+
+    // 键盘快捷交互
+    document.getElementById("searchInput").addEventListener("input", e => {
+      const v = e.target.value;
+      document.getElementById("clearBtn").classList.toggle("visible", !!v);
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        refreshView();
+      }, 90);
+    });
+
+    document.getElementById("searchInput").addEventListener("keydown", e => {
+      if (e.key === "Enter" && currentResults.length > 0) {
+        const first = currentResults.find(x => ["doc", "media", "folder"].includes(x.kind)) || currentResults[0];
+        if (["doc", "media", "folder"].includes(first.kind)) {
+          openTarget(first.path, "open", "", first.id);
+        } else {
+          viewDetail(first.id, first.title, first.summary, first.path, first.obsidian_rel);
+        }
+      }
+    });
+
+    window.addEventListener("keydown", e => {
+      if (e.key === "Escape") {
+        const modal = document.getElementById("detailModal");
+        if (modal.classList.contains("open")) {
+          closeModal();
+        } else if (document.getElementById("searchInput").value || currentExt !== "all" || currentCat !== "all") {
+          resetAllFilters();
+          clearSearch();
+        }
+      } else if (e.key === "/" && document.activeElement !== document.getElementById("searchInput")) {
+        e.preventDefault();
+        document.getElementById("searchInput").focus();
+      }
+    });
+
+    initPrefs();
+    syncFilterPillsUI();
+    (async () => {
+      const qs = new URLSearchParams(window.location.search);
+      const initQ = (qs.get("q") || "").trim();
+      const initKind = (qs.get("kind") || "").trim();
+      if (initKind && ALL_TAB_KEYS.includes(initKind)) {
+        currentKind = initKind;
+        syncFilterPillsUI();
+      }
+      if (initQ) {
+        const inp = document.getElementById("searchInput");
+        inp.value = initQ;
+        document.getElementById("clearBtn").classList.add("visible");
+        try {
+          const pingRes = await fetch(`${API_BASE}/api/ping`);
+          const pingData = await pingRes.json();
+          if (pingData && pingData.stats) updateScaleBanner(pingData.stats);
+        } catch (_) {}
+        runSearch();
+      } else {
+        loadHome();
+      }
+    })();
+  </script>
+</body>
+</html>
