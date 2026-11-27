@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- COCKPIT_REALTIME_SYNC: 2026-11-27 10:26:25 | VERSION: 1795746385248 | TOTAL: 372803 -->
+<!-- COCKPIT_REALTIME_SYNC: 2026-11-27 10:29:52 | VERSION: 1795746592318 | TOTAL: 372803 -->
 <html lang="zh-CN">
 <head>
   <script id="jt-unified-gate">(function(){
@@ -66,8 +66,8 @@ async function sha(s){
 }
 window.addEventListener('DOMContentLoaded',function(){
   document.body.className='';
-  document.body.style.cssText='margin:0;background:#F6F5F0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px';
-  document.body.innerHTML='<div id="jt_lock_box" style="font:20pt/1.65 Microsoft YaHei,PingFang SC,sans-serif;padding:36px 28px;color:#111827;width:min(680px,100%);background:#fff;border:2px solid #1D4ED8;border-radius:16px;text-align:center;box-shadow:0 10px 28px rgba(0,0,0,.08)"><div style="font-size:24pt;font-weight:800;color:#111827;margin-bottom:10px">🚀 金泰全局秒搜驾驶舱 · 云端同步版</div><div style="font-size:16pt;color:#4B5563;margin-bottom:24px">请输入金泰统一访问密码（与《中国历史文化图库》通用，验证一次全站免密）</div><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:520px;margin:0 auto"><input id="jt_pw_box" type="password" placeholder="请输入访问密码" autocomplete="current-password" style="flex:1;min-width:210px;font:18pt Microsoft YaHei,sans-serif;padding:12px 16px;border:1.5px solid #9CA3AF;border-radius:10px;background:#fff;color:#111827"><button id="jt_pw_btn" type="button" style="font:bold 18pt Microsoft YaHei,sans-serif;padding:12px 28px;background:#1D4ED8;color:#fff;border:none;border-radius:10px;cursor:pointer">验证进入</button></div><div id="jt_pw_err" style="font-size:15pt;color:#DC2626;min-height:28px;margin-top:12px"></div></div>';
+  document.body.style.cssText='margin:0;background:#0F172A;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px';
+  document.body.innerHTML='<div id="jt_lock_box" style="font:20pt/1.65 Microsoft YaHei,PingFang SC,sans-serif;padding:36px 28px;color:#F8FAFC;width:min(680px,100%);background:#1E293B;border:2px solid #3B82F6;border-radius:16px;text-align:center;box-shadow:0 10px 28px rgba(0,0,0,.45)"><div style="font-size:24pt;font-weight:800;color:#F8FAFC;margin-bottom:10px">🚀 金泰全局秒搜驾驶舱 · 云端同步版</div><div style="font-size:16pt;color:#CBD5E1;margin-bottom:24px">请输入金泰统一访问密码（与《中国历史文化图库》通用，验证一次全站免密）</div><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:520px;margin:0 auto"><input id="jt_pw_box" type="password" placeholder="请输入访问密码" autocomplete="current-password" style="flex:1;min-width:210px;font:18pt Microsoft YaHei,sans-serif;padding:12px 16px;border:1.5px solid #475569;border-radius:10px;background:#0F172A;color:#F8FAFC"><button id="jt_pw_btn" type="button" style="font:bold 18pt Microsoft YaHei,sans-serif;padding:12px 28px;background:#2563EB;color:#fff;border:none;border-radius:10px;cursor:pointer">验证进入</button></div><div id="jt_pw_err" style="font-size:15pt;color:#FCA5A5;min-height:28px;margin-top:12px"></div></div>';
   document.documentElement.setAttribute('data-jt-ok','1');
   document.documentElement.style.visibility='visible';
   var inp=document.getElementById('jt_pw_box'),btn=document.getElementById('jt_pw_btn'),err=document.getElementById('jt_pw_err');
@@ -125,6 +125,7 @@ window.addEventListener('DOMContentLoaded',function(){
     }
 
     body.dark {
+      color-scheme: dark;
       --bg: #0F172A;
       --surface: #1E293B;
       --surface-alt: #334155;
@@ -771,7 +772,7 @@ window.addEventListener('DOMContentLoaded',function(){
     }
   </style>
 </head>
-<body>
+<body class="dark">
   <div class="container">
     <!-- 顶部栏 -->
     <header class="topbar">
@@ -787,7 +788,7 @@ window.addEventListener('DOMContentLoaded',function(){
         <button class="ctrl-btn" data-fsize="22" onclick="setFontSize(22)">大字 22px</button>
         <button class="ctrl-btn" data-fsize="26" onclick="setFontSize(26)">超大 26px</button>
         <button class="ctrl-btn" data-fsize="30" onclick="setFontSize(30)">特大 30px</button>
-        <button class="ctrl-btn" onclick="toggleTheme()" id="themeBtn">🌙 深色护眼</button>
+        <button class="ctrl-btn" onclick="toggleTheme()" id="themeBtn">☀️ 浅色高对比</button>
         <button class="ctrl-btn" onclick="rebuildIndex()" id="rebuildBtn">🔄 立即同步</button>
       </div>
     </header>
@@ -1011,17 +1012,17 @@ window.addEventListener('DOMContentLoaded',function(){
 
     function toggleTheme() {
       const isDark = document.body.classList.toggle("dark");
-      localStorage.setItem("jintai_cockpit_dark", isDark ? "1" : "0");
+      localStorage.setItem("jintai_cockpit_dark_v2", isDark ? "1" : "0");
       document.getElementById("themeBtn").textContent = isDark ? "☀️ 浅色高对比" : "🌙 深色护眼";
     }
 
     function initPrefs() {
       const savedSize = Number(localStorage.getItem("jintai_cockpit_fsize") || "22");
       setFontSize([22, 26, 30].includes(savedSize) ? savedSize : 22);
-      if (localStorage.getItem("jintai_cockpit_dark") === "1") {
-        document.body.classList.add("dark");
-        document.getElementById("themeBtn").textContent = "☀️ 浅色高对比";
-      }
+      const darkPref = localStorage.getItem("jintai_cockpit_dark_v2");
+      const isDark = darkPref !== "0";
+      document.body.classList.toggle("dark", isDark);
+      document.getElementById("themeBtn").textContent = isDark ? "☀️ 浅色高对比" : "🌙 深色护眼";
     }
 
     function syncFilterPillsUI() {
